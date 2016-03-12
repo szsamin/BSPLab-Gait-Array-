@@ -114,12 +114,12 @@ toggleButton = uicontrol('Style','togglebutton','String','Play',...
                 while(ai.SamplesAvailable <=0) %% Allow enough time to collect data
                 end
                 
-                [data,time,~] = getdata(ai,ai.SamplesAvailable); %% Push the buffer data into the array
+                [data,~,~] = getdata(ai,ai.SamplesAvailable); %% Push the buffer data into the array
                 
                 tic; % Tic counter to track the length of the time
                 
-                saveData = horzcat(saveData,data'); % save all the data in an array
-                timeData = horzcat(timeData,time'); % save the time in an array
+%                 saveData = horzcat(saveData,data'); % save all the data in an array
+%                 timeData = horzcat(timeData,time'); % save the time in an array
                 
                 [newData] = GUIProcessing(data,newData,Duration,samplingRate); % Data processing to create a X second sliding window
                 handleValueSet(a,b,c,newData,Duration,samplingRate,button1,button2,button3); % Handle set to plot the values on the figure
@@ -130,7 +130,7 @@ toggleButton = uicontrol('Style','togglebutton','String','Play',...
                 
                 if(clear1 == 1)
                     DAQclear(ai);
-                    DataSavePrompt(timeData,saveData,samplingRate,max(time));
+%                     DataSavePrompt(timeData,saveData,samplingRate,max(time));
                     guiClear;
                     break;
                 end
