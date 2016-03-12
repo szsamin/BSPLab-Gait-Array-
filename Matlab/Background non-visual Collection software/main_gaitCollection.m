@@ -3,10 +3,16 @@
 % Sampling Rate to specify the required sampling rate for the DAQ
 % minutes to specify the time in minutes for the entire collection
 
-function main_gaitCollection(samplingRate,minutes)
+function main_gaitCollection
 
-% samplingRate = 250000;
-% minutes = 0;
+prompt = {'How many mintues?','What is the sampling rate in Hz?'};
+dlg_title = 'Input';
+num_lines = 1;
+defaultans = {'1','10000'};
+output = inputdlg(prompt,dlg_title,num_lines,defaultans);
+minutes = output{1};
+samplingRate = output{2};
+
 
 %%% Finds a DAQ, if its already running stop it.
 if (~isempty(daqfind))
